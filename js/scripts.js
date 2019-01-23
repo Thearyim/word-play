@@ -11,19 +11,24 @@
 //   });
 // });
 
+function getNewArray(words) {
+  var newArray = [];
+  words.forEach(function(word) {
+    if(word.length >= 3){
+      newArray.push(word);
+    }
+  });
+  return newArray;
+}
+
 $(document).ready(function() {
-  $("#formOne").submit(function(event) {
+  $("form#formOne").submit(function(event) {
     event.preventDefault();
     var userInput = $("input#sentence1").val();
-    var words = userInput.split('[1]');
-
-     $("#result").append(userInput);
-
-    return words;
-
+    var words = userInput.split(' ');
+    var wordsLongerThan3Char = getNewArray(words);
+    var reverse = wordsLongerThan3Char.reverse();
+    var output = reverse.join(' ');
+     $("#result").text(output);
+   });
 });
-
-
-    // $(".result").show();
-
-  });
